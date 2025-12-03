@@ -9,14 +9,27 @@ const pokemonList = [
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
   },
   {
+    name: "charmander",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+  },
+  {
+    name: "squirtle",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+  },
+  {
+    name: "pikachu",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+  },
+  {
     name: "mew",
   },
 ];
 
 function App() {
-  const [pokemonName, setPokemonName] = useState<"bulbasaur" | "mew">(
-    "bulbasaur",
-  );
+  const [pokemonName, setPokemonName] = useState(pokemonList[0].name);
 
   const pokemon = pokemonList.find((pokemon) => pokemon.name === pokemonName);
 
@@ -26,12 +39,17 @@ function App() {
 
   return (
     <div>
-      <button type="button" onClick={() => setPokemonName("bulbasaur")}>
-        Bulbasaur
-      </button>
-      <button type="button" onClick={() => setPokemonName("mew")}>
-        Mew
-      </button>
+      <nav>
+        <ul>
+        {pokemonList.map((pokemon) => (
+          <li key={pokemon.name}>
+            <button type="button" onClick={() => setPokemonName(pokemon.name)}>
+              {pokemon.name}
+            </button>
+          </li>
+        ))}
+        </ul>
+      </nav>
       <PokemonCard name={pokemon.name} imgSrc={pokemon.imgSrc} />
     </div>
   );
